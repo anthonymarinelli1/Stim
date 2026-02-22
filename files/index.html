@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STIM Organic Brew — Clean Label Lager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --orange: #E07020;
+      --orange-light: #F5A040;
+      --green: #2A5A2A;
+      --green-mid: #4A8A4A;
+      --green-light: #A8C8A8;
+      --yellow: #D4A820;
+      --cream: #F5F0E0;
+      --cream-dark: #EAE0C0;
+      --brown: #3A2810;
+      --white: #FDFAF0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(245,240,224,0.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--green);
+    }
+
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--green);
+      text-decoration: none;
+      transition: color 0.2s;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:hover { color: var(--orange); }
+    .nav-links a.active { color: var(--orange); border-bottom: 2px solid var(--orange); padding-bottom: 2px; }
+
+    .nav-cta {
+      background: var(--orange);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-size: 0.8rem !important;
+      font-weight: 700 !important;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-cta:hover { background: var(--orange-light); transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      padding: 120px 8% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Groovy sun rays in background */
+    .hero-rays {
+      position: absolute;
+      top: 50%; left: 60%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 700px;
+      background: conic-gradient(
+        from 0deg,
+        rgba(212,168,32,0.08) 0deg 20deg,
+        transparent 20deg 40deg,
+        rgba(212,168,32,0.08) 40deg 60deg,
+        transparent 60deg 80deg,
+        rgba(212,168,32,0.08) 80deg 100deg,
+        transparent 100deg 120deg,
+        rgba(212,168,32,0.08) 120deg 140deg,
+        transparent 140deg 160deg,
+        rgba(212,168,32,0.08) 160deg 180deg,
+        transparent 180deg 200deg,
+        rgba(212,168,32,0.08) 200deg 220deg,
+        transparent 220deg 240deg,
+        rgba(212,168,32,0.08) 240deg 260deg,
+        transparent 260deg 280deg,
+        rgba(212,168,32,0.08) 280deg 300deg,
+        transparent 300deg 320deg,
+        rgba(212,168,32,0.08) 320deg 340deg,
+        transparent 340deg 360deg
+      );
+      border-radius: 50%;
+      animation: spin-slow 30s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes spin-slow { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(212,168,32,0.2);
+      border: 1px solid rgba(212,168,32,0.4);
+      color: var(--yellow);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 7px 18px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1.0;
+      color: var(--cream);
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--orange-light);
+      display: block;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: rgba(245,240,224,0.7);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 14px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.25s;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(224,112,32,0.3); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--cream);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 14px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: 2px solid rgba(245,240,224,0.3);
+      transition: all 0.25s;
+      display: inline-block;
+    }
+
+    .btn-ghost:hover { border-color: var(--orange-light); color: var(--orange-light); }
+
+    .hero-tags {
+      display: flex;
+      gap: 10px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: rgba(245,240,224,0.5);
+      border: 1px solid rgba(245,240,224,0.15);
+      padding: 5px 14px;
+      border-radius: 50px;
+      letter-spacing: 0.04em;
+    }
+
+    /* Can image */
+    .hero-can {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .can-glow {
+      position: absolute;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(224,112,32,0.25) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: glow-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes glow-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .can-img {
+      height: 420px;
+      width: auto;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.4));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* TRUST BAR */
+    .trust-bar {
+      background: var(--orange);
+      padding: 14px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* SECTION STYLES */
+    .section {
+      padding: 100px 8%;
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--green);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .section-title em { font-style: italic; color: var(--orange); }
+
+    /* CARDS */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 36px 28px;
+      border: 2px solid var(--green-light);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(to right, var(--orange), var(--yellow));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(42,90,42,0.12); }
+    .card:hover::before { transform: scaleX(1); }
+
+    .card-icon { font-size: 2.4rem; margin-bottom: 16px; display: block; }
+    .card-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
+      color: var(--green);
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+    .card-text {
+      font-size: 0.88rem;
+      color: #6a5030;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* FOUNDER STRIP */
+    .founder-strip {
+      background: var(--green);
+      padding: 100px 8%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .founder-quote {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-style: italic;
+      color: var(--cream);
+      font-weight: 300;
+      line-height: 1.5;
+      border-left: 4px solid var(--orange);
+      padding-left: 28px;
+    }
+
+    .founder-right .section-title { color: var(--cream); }
+    .founder-right .section-eyebrow { color: var(--orange-light); }
+    .founder-right p {
+      font-size: 0.9rem;
+      color: rgba(245,240,224,0.65);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* NOTIFY */
+    .notify {
+      background: var(--cream-dark);
+      padding: 100px 8%;
+      text-align: center;
+    }
+
+    .notify-inner { max-width: 520px; margin: 0 auto; }
+    .notify .section-title { color: var(--green); text-align: center; }
+
+    .notify p {
+      font-size: 0.92rem;
+      color: #6a5030;
+      margin-bottom: 36px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .email-form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .email-form input {
+      flex: 1;
+      min-width: 220px;
+      background: var(--white);
+      border: 2px solid var(--green-light);
+      border-radius: 50px;
+      padding: 14px 22px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.88rem;
+      color: var(--brown);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .email-form input:focus { border-color: var(--orange); }
+    .email-form input::placeholder { color: #b0a080; }
+
+    /* FOOTER */
+    footer {
+      background: var(--brown);
+      padding: 36px 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo img { height: 40px; width: auto; }
+    .footer-copy { font-size: 0.72rem; color: rgba(245,240,224,0.35); letter-spacing: 0.04em; }
+    .footer-note { font-size: 0.68rem; color: rgba(245,240,224,0.2); }
+
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-can { display: none; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .founder-strip { grid-template-columns: 1fr; gap: 40px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="logo.PNG" alt="STIM Organic Brew" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="why.html">Why STIM</a></li>
+      <li><a href="founder.html">Founder</a></li>
+    </ul>
+    <a href="#notify" class="nav-cta">Get Notified</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-rays"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">🌾 Certified Organic · San Diego, CA</div>
+        <h1>
+          Good Beer.
+          <em>Clean Ingredients.</em>
+          Real Transparency.
+        </h1>
+        <p class="hero-desc">The organic American lager built for drinkers who care about what's in their can — without giving up great taste.</p>
+        <div class="hero-buttons">
+          <a href="#notify" class="btn-primary">Get Early Access</a>
+          <a href="why.html" class="btn-ghost">Why STIM?</a>
+        </div>
+        <div class="hero-tags">
+          <span class="tag">🌿 USDA Organic</span>
+          <span class="tag">🔬 Third-Party Tested</span>
+          <span class="tag">🍺 American Lager · 4.5% ABV</span>
+        </div>
+      </div>
+
+      <div class="hero-can">
+        <div class="can-glow"></div>
+        <img src="can.PNG" alt="STIM Organic Brew Can" class="can-img" />
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">🌾 USDA Certified Organic</div>
+    <div class="trust-item">🔬 Third-Party Residue Tested</div>
+    <div class="trust-item">🌱 No Synthetic Pesticides</div>
+    <div class="trust-item">🍺 Glyphosate Free</div>
+  </div>
+
+  <!-- WHAT MAKES STIM -->
+  <section class="section" style="background: var(--white);">
+    <div class="section-eyebrow">What Makes STIM Different</div>
+    <h2 class="section-title">Organic meets <em>everyday.</em></h2>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🌾</span>
+        <div class="card-title">Certified Organic</div>
+        <p class="card-text">Brewed with USDA organic grains and hops. Zero synthetic pesticides or herbicides — from seed to sip.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔬</span>
+        <div class="card-title">Third-Party Tested</div>
+        <p class="card-text">Every batch is independently tested for glyphosate residue. We publish the results. Transparency isn't a buzzword — it's the whole point.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🍺</span>
+        <div class="card-title">Actually Delicious</div>
+        <p class="card-text">A clean, crisp lager built to compete with Coors and Modelo on taste. Not a niche craft IPA. Just a great everyday beer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER STRIP -->
+  <div class="founder-strip">
+    <div>
+      <p class="founder-quote">"I enjoy beer but I care about what goes into my body. I was shocked by how few clean-label options exist. So I built one."</p>
+    </div>
+    <div class="founder-right">
+      <div class="section-eyebrow">The Founder</div>
+      <h2 class="section-title" style="color: var(--cream);">Built by a drinker,<br><em>for drinkers.</em></h2>
+      <p>Chase Basson is a college senior who noticed a gap nobody was filling. STIM is his answer — organic, affordable, and built on full ingredient transparency.</p>
+      <br />
+      <a href="founder.html" class="btn-primary" style="margin-top: 16px;">Read His Story</a>
+    </div>
+  </div>
+
+  <!-- NOTIFY -->
+  <section class="notify" id="notify">
+    <div class="notify-inner">
+      <div class="section-eyebrow">Early Access</div>
+      <h2 class="section-title">Be first to crack <em>a clean one.</em></h2>
+      <p>Join the list for launch updates and behind-the-scenes from the brewery.</p>
+      <form class="email-form" onsubmit="handleSubmit(event)">
+        <input type="email" placeholder="your@email.com" required />
+        <button type="submit" class="btn-primary">Join the List</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo"><img src="logo.PNG" alt="STIM" /></div>
+    <div class="footer-copy">© 2026 STIM Organic Brew Co. · San Diego, CA</div>
+    <div class="footer-note">Must be 21+ to purchase. Drink responsibly.</div>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.textContent = "✓ You're on the list!";
+      btn.style.background = 'var(--green)';
+      btn.disabled = true;
+      e.target.querySelector('input').disabled = true;
+    }
+  </script>
+</body>
+</html>
